@@ -14,12 +14,12 @@
     },
 
     execute: function (context) {
-      context.currentContext.value = encodeURIComponent(context.currentContext.argument + "|" + window.parent.location);
+      context.currentContext.value = encodeURIComponent(context.currentContext.argument + "|" + ExperienceEditor.getPageEditingWindow().location);
       ExperienceEditor.PipelinesUtil.generateRequestProcessor("ExperienceEditor.Mode.SelectModeRequest", function (response) {
           // Sitecore Support FIX 102657
           preprocessDebugMode(response);
           // Sitecore Support FIX 102657
-        window.parent.location = response.responseValue.value;
+          ExperienceEditor.getPageEditingWindow().location = response.responseValue.value;
       }).execute(context);
     },
 	
